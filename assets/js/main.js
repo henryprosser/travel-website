@@ -7,7 +7,6 @@ const navMenu = document.getElementById("nav-menu"),
 if (navToggle) {
   navToggle.addEventListener("click", () => {
     console.log("toggle clicked");
-    // navMenu.style.top = "0";
     navMenu.classList.add("show-menu");
   });
 }
