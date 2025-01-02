@@ -607,6 +607,29 @@ img {
   text-align: center;
 }
 /*=============== SCROLL BAR ===============*/
+/* Custom scrollbar styling */
+body::-webkit-scrollbar {
+  width: 0.6rem;
+  border-radius: 0.5rem;
+  background-color: hsl(0, 0%, 10%);
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: hsl(0, 0%, 20%);
+  border-radius: 0.5rem;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(0, 0%, 30%);
+}
+
+/* Fallback for browsers without `::-webkit-scrollbar` support */
+@supports not (selector(::-webkit-scrollbar)) {
+  body {
+    scrollbar-width: thin; /* Thin scrollbar for Firefox */
+    scrollbar-color: hsl(0, 0%, 20%) hsl(0, 0%, 10%); /* Thumb | Track */
+  }
+}
 
 /*=============== SCROLL UP ===============*/
 
