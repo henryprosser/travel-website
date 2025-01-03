@@ -166,6 +166,7 @@ img {
     width: 100%;
     padding-block: 4rem;
     backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px); /* For Safari */
     transition: top 0.4s;
   }
 }
@@ -178,9 +179,25 @@ img {
 }
 
 .nav__link {
+  position: relative;
   color: var(--title-color);
   font-family: var(--second-font);
   font-weight: var(--font-medium);
+}
+
+.nav__link::after {
+  content: "";
+  width: 0;
+  height: 2px;
+  background-color: var(--title-color);
+  position: absolute;
+  left: 0;
+  bottom: -0.5rem;
+  transition: width 0.3s;
+}
+
+.nav__link:hover::after {
+  width: 70%;
 }
 
 .nav__close {
@@ -204,11 +221,14 @@ img {
   height: 100%;
   background-color: hsla(0, 0%, 0%, 0.3);
   backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px); /* For Safari */
   z-index: -1;
 }
 
 /* Active link */
+.active-link::after {
+  width: 70%;
+}
 
 /*=============== HOME ===============*/
 .home {
@@ -313,7 +333,7 @@ img {
   font-family: var(--second-font);
   font-weight: var(--font-semi-bold);
   backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px); /* For Safari */
 }
 
 .button i {
@@ -607,10 +627,54 @@ img {
   text-align: center;
 }
 /*=============== SCROLL BAR ===============*/
+/* Custom scrollbar styling */
+body::-webkit-scrollbar {
+  width: 0.6rem;
+  border-radius: 0.5rem;
+  background-color: hsl(0, 0%, 10%);
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: hsl(0, 0%, 20%);
+  border-radius: 0.5rem;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(0, 0%, 30%);
+}
+
+/* Fallback for browsers without `::-webkit-scrollbar` support */
+@supports not (selector(::-webkit-scrollbar)) {
+  body {
+    scrollbar-width: thin; /* Thin scrollbar for Firefox */
+    scrollbar-color: hsl(0, 0%, 20%) hsl(0, 0%, 10%); /* Thumb | Track */
+  }
+}
 
 /*=============== SCROLL UP ===============*/
+.scrollup {
+  position: fixed;
+  right: 1rem;
+  bottom: -50%;
+  background-color: hsl(0, 0%, 100%), 0.1;
+  padding: 6px;
+  display: inline-flex;
+  color: var(--title-color);
+  font-size: 1.25rem;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px); /* For Safari */
+  z-index: var(--z-tooltip);
+  transition: bottom 0.4s, transform 0.4s;
+}
 
-/* Show Scroll Up */
+.scrollup:hover {
+  transform: translateY(-0.25rem);
+}
+
+/* Show scroll up */
+.show-scroll {
+  bottom: 3rem;
+}
 
 /*=============== BREAKPOINTS ===============*/
 /* For small devices */
